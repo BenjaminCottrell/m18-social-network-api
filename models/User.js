@@ -33,7 +33,11 @@ const userSchema = new Schema(
     id: false,
   }
 );
+// altered virtual from activity 21
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
+});
 
 const User = model('user', userSchema);
-
+// exporting User model
 module.exports = User;

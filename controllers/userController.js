@@ -25,7 +25,7 @@ const grade = async (studentId) =>
 
 module.exports = {
   // Get all students
-  getStudents(req, res) {
+  getUsers(req, res) {
     Student.find()
       .then(async (students) => {
         const studentObj = {
@@ -40,7 +40,7 @@ module.exports = {
       });
   },
   // Get a single student
-  getSingleStudent(req, res) {
+  getSingleUser(req, res) {
     Student.findOne({ _id: req.params.studentId })
       .select('-__v')
       .then(async (student) =>
@@ -57,13 +57,13 @@ module.exports = {
       });
   },
   // create a new student
-  createStudent(req, res) {
+  createUser(req, res) {
     Student.create(req.body)
       .then((student) => res.json(student))
       .catch((err) => res.status(500).json(err));
   },
   // Delete a student and remove them from the course
-  deleteStudent(req, res) {
+  deleteUser(req, res) {
     Student.findOneAndRemove({ _id: req.params.studentId })
       .then((student) =>
         !student
@@ -88,7 +88,7 @@ module.exports = {
   },
 
   // Add an assignment to a student
-  addAssignment(req, res) {
+  addFriend(req, res) {
     console.log('You are adding an assignment');
     console.log(req.body);
     Student.findOneAndUpdate(
@@ -106,7 +106,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove assignment from a student
-  removeAssignment(req, res) {
+  removeFriend(req, res) {
     Student.findOneAndUpdate(
       { _id: req.params.studentId },
       { $pull: { assignment: { assignmentId: req.params.assignmentId } } },

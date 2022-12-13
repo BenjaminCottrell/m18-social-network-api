@@ -2,44 +2,51 @@ const users = [
   {
     "username": "Boba Fett",
     "email": "boba@bountyhunter.com",
-    "thoughts": [],
     "friends": [],
+    "thoughts": [],
     "__v": 0
   },
   {
     "username": "Han Solo",
     "email": "han@solo.com",
-    "thoughts": [],
     "friends": [],
+    "thoughts": [],
+    "__v": 0
+  },
+  {
+    "username": "Luke Skywalker",
+    "email": "luke@jedi.com",
+    "friends": [],
+    "thoughts": [],
     "__v": 0
   }
 ];
 
 const thoughts = [
   {
-    "thoughtText": "This is an example thought by Han Solo",
+    "thoughtText": "Example thought by Han Solo",
     "username": "Han Solo",
-    "createdAt": "2022-11-25T09:09:17.076+00:00",
+    "createdAt": "2022-12-13T12:28:19.076+00:00",
     "reactions": [
       {
-        "reactionBody": "This is an example reaction by Boba Fett",
+        "reactionBody": "Example reaction by Boba Fett",
         "username": "Boba Fett",
-        "reactionId": "638083c9417ed0ed80903d82",
-        "createdAt": "2022-11-25T09:09:17.076+00:00",
+        "reactionId": "638083c9419ed0ed80903d95",
+        "createdAt": "2022-12-13T12:28:19.076+00:00",
       }
     ],
     "__v": 0
   },
   {
-    "thoughtText": "This is an example thought by Boba Fett",
+    "thoughtText": "Example thought by Boba Fett",
     "username": "Boba Fett",
-    "createdAt": "2022-11-25T09:09:17.076+00:00",
+    "createdAt": "2022-12-13T12:28:19.076+00:00",
     "reactions": [
       {
-        "reactionBody": "This is an example reaction by Han Solo",
+        "reactionBody": "Example reaction by Han Solo",
         "username": "Han Solo",
-        "reactionId": "6380840e417ed0ed80903d8a",
-        "createdAt": "2022-11-25T09:09:17.076+00:00",
+        "reactionId": "6380840e419ed0ed80903d8c",
+        "createdAt": "2022-12-13T12:28:19.076+00:00",
       }
     ],
     "__v": 0

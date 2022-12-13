@@ -1,5 +1,9 @@
 const { Schema, model } = require('mongoose');
 
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
+
 const thoughtSchema = new Schema(
   {
     thoughtId: {

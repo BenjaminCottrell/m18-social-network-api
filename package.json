@@ -1,12 +1,12 @@
 {
-  "name": "28-Stu_Mini-Project",
-  "version": "1.0.1",
-  "description": "Mongoose back-end project - Main",
-  "main": "index.js",
+  "name": "m18-social-network-api",
+  "version": "1.0.0",
+  "description": "Social media api",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
+    "start": "node server",
+    "dev": "nodemon server",
     "seed": "node utils/seed",
     "heroku-postbuild": "node utils/seed.js"
   },
@@ -16,5 +16,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminCottrell/m18-social-network-api.git"
+  },
+  "author": "Benjamin Cottrell",
+  "bugs": {
+    "url": "https://github.com/BenjaminCottrell/m18-social-network-api/issues"
+  },
+  "homepage": "https://github.com/BenjaminCottrell/m18-social-network-api#readme"
 }

@@ -1,118 +1,50 @@
-const names = [
-  'Aaran',
-  'Aaren',
-  'Aarez',
-  'Aarman',
-  'Aaron',
-  'Aaron-James',
-  'Aarron',
-  'Aaryan',
-  'Aaryn',
-  'Aayan',
-  'Aazaan',
-  'Abaan',
-  'Abbas',
-  'Abdallah',
-  'Abdalroof',
-  'Abdihakim',
-  'Abdirahman',
-  'Abdisalam',
-  'Abdul',
-  'Abdul-Aziz',
-  'Abdulbasir',
-  'Abdulkadir',
-  'Abdulkarem',
-  'Smith',
-  'Jones',
-  'Coollastname',
-  'enter_name_here',
-  'Ze',
-  'Zechariah',
-  'Zeek',
-  'Zeeshan',
-  'Zeid',
-  'Zein',
-  'Zen',
-  'Zendel',
-  'Zenith',
-  'Zennon',
-  'Zeph',
-  'Zerah',
-  'Zhen',
-  'Zhi',
-  'Zhong',
-  'Zhuo',
-  'Zi',
-  'Zidane',
-  'Zijie',
-  'Zinedine',
-  'Zion',
-  'Zishan',
-  'Ziya',
-  'Ziyaan',
-  'Zohaib',
-  'Zohair',
-  'Zoubaeir',
-  'Zubair',
-  'Zubayr',
-  'Zuriel',
-  'Xander',
-  'Jared',
-  'Courtney',
-  'Gillian',
-  'Clark',
-  'Jared',
-  'Grace',
-  'Kelsey',
-  'Tamar',
-  'Alex',
-  'Mark',
-  'Tamar',
-  'Farish',
-  'Sarah',
-  'Nathaniel',
-  'Parker',
-];
-
-const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
-];
-
-// Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-// Gets a random full name
-const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
-
-// Function to generate random assignments that we can add to student object.
-const getRandomAssignments = (int) => {
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      assignmentName: getRandomArrItem(appDescriptions),
-      score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
-    });
+const users = [
+  {
+    "username": "Boba Fett",
+    "email": "boba@bountyhunter.com",
+    "thoughts": [],
+    "friends": [],
+    "__v": 0
+  },
+  {
+    "username": "Han Solo",
+    "email": "han@solo.com",
+    "thoughts": [],
+    "friends": [],
+    "__v": 0
   }
-  return results;
-};
+];
+
+const thoughts = [
+  {
+    "thoughtText": "This is an example thought by Han Solo",
+    "username": "Han Solo",
+    "createdAt": "2022-11-25T09:09:17.076+00:00",
+    "reactions": [
+      {
+        "reactionBody": "This is an example reaction by Boba Fett",
+        "username": "Boba Fett",
+        "reactionId": "638083c9417ed0ed80903d82",
+        "createdAt": "2022-11-25T09:09:17.076+00:00",
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "thoughtText": "This is an example thought by Boba Fett",
+    "username": "Boba Fett",
+    "createdAt": "2022-11-25T09:09:17.076+00:00",
+    "reactions": [
+      {
+        "reactionBody": "This is an example reaction by Han Solo",
+        "username": "Han Solo",
+        "reactionId": "6380840e417ed0ed80903d8a",
+        "createdAt": "2022-11-25T09:09:17.076+00:00",
+      }
+    ],
+    "__v": 0
+  }
+];
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomAssignments };
+module.exports = { users, thoughts };

@@ -12,6 +12,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       max_length: 50,
+      match: [/.+@.+\..+/, 'Must be a valid email address!'],
     },
     friends: [
       {

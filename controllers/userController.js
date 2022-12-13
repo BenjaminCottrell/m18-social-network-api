@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 module.exports = {
@@ -24,8 +23,8 @@ module.exports = {
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json({
-              user,
-            })
+            user,
+          })
       )
       .catch((err) => {
         console.log(err);
@@ -44,18 +43,14 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
-          : Thought.findOneAndUpdate(
-              { users: req.params.userId },
-              { $pull: { users: req.params.userId } },
-              { new: true }
-            )
-      )
+          : Thought.deleteMany({ username: user.username }))
+
       .then((thought) =>
         !thought
           ? res.status(404).json({
-              message: 'User deleted, but no thoughts found',
-            })
-          : res.json({ message: 'User successfully deleted' })
+            message: 'User deleted, but no thoughts found',
+          })
+          : res.json({ message: 'User and thoughts successfully deleted' })
       )
       .catch((err) => {
         console.log(err);
@@ -63,37 +58,57 @@ module.exports = {
       });
   },
 
-  // Add an assignment to a user
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      // find the user by id
+      { _id: req.params.userId },
+      // update the user
+      req.body,
+      { new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: "That user does not exist" })
+          : res.json({ message: "User was updated" })
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
+
+  // Add an friend to a user
   addFriend(req, res) {
-    console.log('You are adding an assignment');
+    console.log('You are adding an friend');
     console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { assignments: req.body } },
-      { runValidators: true, new: true }
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
     )
       .then((user) =>
         !user
           ? res
-              .status(404)
-              .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
+            .status(404)
+            .json({ message: 'No user found with that ID :(' })
+          : res.json({message: 'User added as friend'})
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove assignment from a user
+  // Remove friend from a user
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
-      { runValidators: true, new: true }
+      { $pull: { friends: { friendId: req.params.friendId } } },
+      { new: true }
     )
       .then((user) =>
         !user
           ? res
-              .status(404)
-              .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
+            .status(404)
+            .json({ message: 'No user found with that ID :(' })
+          : res.json([message: 'User removed from friends'])
       )
       .catch((err) => res.status(500).json(err));
   },

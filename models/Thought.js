@@ -7,7 +7,7 @@ function formatDate(date) {
 
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
+    thoughtText: {
       type: String,
       required: true,
       maxlength: 280,
@@ -20,9 +20,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (date) => {
-        return formatDate(date)
-      },
+      get: formatDate,
     },
     reactions: [reactionSchema],
   },

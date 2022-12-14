@@ -1,5 +1,9 @@
 const { Schema, model } = require('mongoose');
 
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
+
 // Schema to create a reaction model
 const reactionSchema = new Schema(
   {
@@ -16,15 +20,14 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
-      get: (date) => {
-        return formatDate(date)
+      get: formatDate,
       },
       username: {
         type: String,
         required: true,
       }
     },
-  },
+  
   {
     toJSON: {
       virtuals: true,

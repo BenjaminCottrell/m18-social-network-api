@@ -3,9 +3,14 @@ const { Thought, User } = require('../models');
 module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
+    console.log(req.body);
     Thought.find()
-      .then((thoughts) => res.json(thoughts))
-      .catch((err) => res.status(500).json(err));
+      .then(async (thoughts) => { return res.json(thoughts);
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
   },
   // Get a thought
   getSingleThought(req, res) {
@@ -20,14 +25,16 @@ module.exports = {
   },
   // Create a thought
   createThought(req, res) {
+    console.log('You are creating a thought');
+    console.log(req.body);
     Thought.create(req.body)
-      .then((thought) => res.json(
-        User.findOneAndUpdate(
-          {_id: req.params.userId},
+      .then((thought) => { 
+        return User.findOneAndUpdate(
+          {_id: req.body.userId},
           {$push: { thoughts: thought._id}},
           {new: true},
-        )
-      ))
+        )}
+      )
       .then((user) =>
         !user
           ? res.status(404).json({
@@ -69,15 +76,16 @@ module.exports = {
 
   // add a reaction
   addReaction(req, res) {
+    console.log(req.body);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $push: { reactions: req.body } },
+      { $addtoSet: { reactions: req.body } },
       { new: true }
     )
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID" })
-          : res.json({ message: "Reaction added" })
+          : res.status(200).json(thought)
       )
       .catch((err) => {res.status(500).json(err);});
   },
